@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="./custom_styling.css">
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+
 </head>
 
 <body>
@@ -45,24 +49,124 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Come explore Asia's underwaters!</h1>
-        <p class="lead">Scroll around the map in Asia to discover diving hotspots, surfing turfs and beautiful beaches.</p>
-        <ul class="list-unstyled">
-          <li>Japan</li>
-          <li>Malaysia</li>
-          <li>Indonesia</li>
-          <li>Australia</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <div class="landing-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="mt-5">Come explore Asia's underwaters!</h1>
+                    <p class="lead">Scroll around the map in Asia to discover diving hotspots, surfing turfs and beautiful
+                        beaches.</p>
+                </div>
+            </div>
+        </div>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <!-- Map div -->
+                    <div id="map" class="mx-auto" style="width: 80vw; height: 60vh"></div>
+
+                    <div id="popup" class="ol-popup">
+                        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                        <div id="popup-content"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <ul class="list-unstyled">
+                        <li>Japan - Malaysia - Indonesia - Australia </li>
+                        <li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.slim.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Map JavaScript -->
+ <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+ 
+ <script>
+ //Initialize the map with the OpenStreetMap Belgium baselayer
+ var attribution = new ol.control.Attribution({
+     collapsible: false
+ });
+
+ var map = new ol.Map({
+     controls: ol.control.defaults({attribution: false}).extend([attribution]),
+     layers: [
+         new ol.layer.Tile({
+             source: new ol.source.OSM({
+                 url: 'https://tile.openstreetmap.be/osmbe/{z}/{x}/{y}.png',
+                 attributions: [ ol.source.OSM.ATTRIBUTION, 'Tiles courtesy of <a href="https://geo6.be/">GEO-6</a>' ],
+                 maxZoom: 18
+             })
+         })
+     ],
+     target: 'map',
+     view: new ol.View({
+         center: ol.proj.fromLonLat([4.35247, 50.84673]),
+         maxZoom: 18,
+         zoom: 12
+     })
+ });
+
+ //Add marker
+ var layer = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([4.35247, 50.84673]))
+             })
+         ]
+     })
+ });
+ map.addLayer(layer);
+
+ //Initialise pop-up
+ var container = document.getElementById('popup');
+ var content = document.getElementById('popup-content');
+ var closer = document.getElementById('popup-closer');
+
+ var overlay = new ol.Overlay({
+     element: container,
+     autoPan: true,
+     autoPanAnimation: {
+         duration: 250
+     }
+ });
+ map.addOverlay(overlay);
+
+ closer.onclick = function() {
+     overlay.setPosition(undefined);
+     closer.blur();
+     return false;
+ };
+ //Open pop up when marker is clicked
+  map.on('singleclick', function (event) {
+     if (map.hasFeatureAtPixel(event.pixel) === true) {
+         var coordinate = event.coordinate;
+
+         content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
+         overlay.setPosition(coordinate);
+     } else {
+         overlay.setPosition(undefined);
+         closer.blur();
+     }
+ });
+ //Adding code to auto pop-up when map is zoomed in large enough to view marker
+ content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
+ overlay.setPosition(ol.proj.fromLonLat([4.35247, 50.84673]));
+
+
+ </script>
 
 </body>
 
