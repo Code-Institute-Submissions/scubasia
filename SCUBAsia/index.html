@@ -67,8 +67,12 @@
                     <div id="map" class="mx-auto" style="width: 80vw; height: 60vh"></div>
 
                     <div id="popup" class="ol-popup">
-                        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                        <a href="https://www.google.com.my/maps" target="_blank" id="popup-closer" class="ol-popup-closer"></a>
                         <div id="popup-content"></div>
+                    </div>
+                    <div id="popup2" class="ol-popup">
+                        <a href="https://www.w3schools.com/tags/att_a_target.asp" id="popup-closer2" class="ol-popup-closer"></a>
+                        <div id="popup-content2"></div>
                     </div>
 
                 </div>
@@ -106,29 +110,117 @@
              source: new ol.source.OSM({
                  url: 'https://tile.openstreetmap.be/osmbe/{z}/{x}/{y}.png',
                  attributions: [ ol.source.OSM.ATTRIBUTION, 'Tiles courtesy of <a href="https://geo6.be/">GEO-6</a>' ],
-                 maxZoom: 18
+                 maxZoom: 10
              })
          })
      ],
      target: 'map',
      view: new ol.View({
-         center: ol.proj.fromLonLat([4.35247, 50.84673]),
-         maxZoom: 18,
-         zoom: 12
+         center: ol.proj.fromLonLat([119.2397, 18.1997]),
+         maxZoom: 10,
+         zoom: 3
      })
  });
 
  //Add marker
+ // Sipidan
  var layer = new ol.layer.Vector({
      source: new ol.source.Vector({
          features: [
              new ol.Feature({
-                 geometry: new ol.geom.Point(ol.proj.fromLonLat([4.35247, 50.84673]))
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([118.6287, 4.1150]))
+                   
              })
          ]
      })
  });
  map.addLayer(layer);
+
+ //Pulau Redang [103.0069, 5.7844]
+ var layer2 = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([103.0069, 5.7844]))
+                 
+             })
+         ]
+     })
+ });
+ map.addLayer(layer2);
+
+
+ //Siwa Reef [113.89813765883, 4.485162555556]
+ var layer3 = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([113.89813765883, 4.485162555556]))
+                 
+             })
+         ]
+     })
+ });
+ map.addLayer(layer3);
+
+ //Okinawa [127.8056, 26.3344]
+  var layer4 = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([127.8056, 26.3344]))
+                 
+             })
+         ]
+     })
+ });
+ map.addLayer(layer4);
+
+
+ //Shireteko [145.2397, 44.1997]
+ var layer5 = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([145.2397, 44.1997]))
+                 
+             })
+         ]
+     })
+ });
+ map.addLayer(layer5);
+
+ 
+ //Geko Dive Bali [115.188919, -8.409518]
+ var layer6 = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([115.188919, -8.409518]))
+                 
+             })
+         ]
+     })
+ });
+ map.addLayer(layer6);
+
+ //The Great Barrier Reef [147.6992, 18.2871]
+ var layer7 = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([147.6992, -18.156290]))
+                 
+             })
+         ]
+     })
+ });
+ map.addLayer(layer7);
+
+
+
+
+
 
  //Initialise pop-up
  var container = document.getElementById('popup');
@@ -144,26 +236,71 @@
  });
  map.addOverlay(overlay);
 
- closer.onclick = function() {
-     overlay.setPosition(undefined);
-     closer.blur();
-     return false;
- };
- //Open pop up when marker is clicked
-  map.on('singleclick', function (event) {
+
+ //Customised pop up text after click, for multiple markers, and adding href links
+ 
+ map.on('singleclick', function (event) {
      if (map.hasFeatureAtPixel(event.pixel) === true) {
          var coordinate = event.coordinate;
 
-         content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
-         overlay.setPosition(coordinate);
+         if (coordinate[0].toPrecision(2) == 13000000) {
+            content.innerHTML = '<a href="https://www.google.com.my/maps">SIPIDAN</a>' + coordinate;
+            overlay.setPosition(coordinate);
+         } else if (coordinate[0].toPrecision(2) == 11000000) {
+            content.innerHTML = '<a href="https://www.google.com.my/maps">REDANG</a>' + coordinate;
+            overlay.setPosition(coordinate);
+
+
+
+
+         }
+
+         
      } else {
          overlay.setPosition(undefined);
          closer.blur();
      }
  });
+
+
  //Adding code to auto pop-up when map is zoomed in large enough to view marker
- content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
- overlay.setPosition(ol.proj.fromLonLat([4.35247, 50.84673]));
+ 
+
+
+//Initialise pop-up
+
+
+ 
+ 
+
+ //Siwa Reef [113.89813765883, 4.485162555556]
+
+
+ //Okinawa [127.8056, 26.3344]
+
+
+
+ //Shireteko [145.2397, 44.1997]
+
+
+ 
+ //Geko Dive Bali [115.188919, -8.409518]
+
+
+ //The Great Barrier Reef [147.6992, 18.2871]
+
+
+ 
+
+
+
+
+
+
+
+
+
+
 
 
  </script>
