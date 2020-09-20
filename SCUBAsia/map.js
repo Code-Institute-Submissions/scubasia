@@ -1,104 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Bare - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./custom_styling.css">
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
- 
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">SCUBAsia</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Travel Packages</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Page Content -->
-    <div class="landing-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h1 class="mt-5">Come explore Asia's underwaters!</h1>
-                    <p class="lead">Scroll around the map in Asia to discover diving hotspots, surfing turfs and beautiful
-                        beaches.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <!-- Map div -->
-                    <div id="map" class="mx-auto" style="width: 80vw; height: 60vh"></div>
-
-                    <div id="popup" class="ol-popup">
-                        <a href="https://www.google.com.my/maps" target="_blank" id="popup-closer" class="ol-popup-closer"></a>
-                        <div id="popup-content"></div>
-                    </div>
-                    <div id="popup2" class="ol-popup">
-                        <a href="https://www.w3schools.com/tags/att_a_target.asp" id="popup-closer2" class="ol-popup-closer"></a>
-                        <div id="popup-content2"></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <ul class="list-unstyled">
-                        <li>Japan - Malaysia - Indonesia - Australia </li>
-                        <li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.slim.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Map JavaScript -->
-  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
- 
- <script>
-  //Initialize the map with the OpenStreetMap Belgium baselayer
+ //Initialize the map with the OpenStreetMap Belgium baselayer
  var attribution = new ol.control.Attribution({
      collapsible: false
  });
@@ -269,7 +171,7 @@
             content.innerHTML = '<a href="https://www.google.com.my/maps">Okinawa</a>' + coordinate;   
             overlay.setPosition(coordinate);
          
-         } else {
+         } else if (coordinate[1].toPrecision(1) == 3000000) {
             content.innerHTML = '<a href="https://www.google.com.my/maps">Shireteko</a>' + coordinate;   
             overlay.setPosition(coordinate);
 
@@ -278,11 +180,6 @@
      } else {
          overlay.setPosition(undefined);
          closer.blur();
-         
      }
  });
- </script>
 
-</body>
-
-</html>
