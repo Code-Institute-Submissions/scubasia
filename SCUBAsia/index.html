@@ -26,19 +26,19 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">SCUBAsia</a>
+      <a class="navbar-brand" href="./index.html">SCUBAsia</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="./index.html">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Travel Packages</a>
+            <a class="nav-link" href="./travel_deals.html">Travel Packages</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
@@ -247,30 +247,30 @@
          var coordinate = event.coordinate;
 
          if (coordinate[1].toPrecision(1) == 400000) {
-            content.innerHTML = '<a href="https://www.google.com.my/maps">SIPIDAN</a>' + coordinate;
+            content.innerHTML = '<a href="./travel_deals.html#sipadan_info">SIPIDAN</a>'
             overlay.setPosition(coordinate);
          } else if (coordinate[0].toPrecision(2) == 11000000) {
-            content.innerHTML = '<a href="https://www.google.com.my/maps">REDANG</a>' + coordinate;
+            content.innerHTML = '<a href="./travel_deals.html#pulau_redang_info">REDANG</a>';
             overlay.setPosition(coordinate);
 
          } else if (coordinate[1].toPrecision(1) == -1000000) {
-            content.innerHTML = '<a href="https://www.google.com.my/maps">Geko Dive Bali</a>' + coordinate;   
+            content.innerHTML = '<a href="./travel_deals.html#geko_info">Geko Dive Bali</a>';   
             overlay.setPosition(coordinate);
 
          } else if (coordinate[1].toPrecision(1) == 500000) {
-            content.innerHTML = '<a href="https://www.google.com.my/maps">Siwa Reef</a>' + coordinate;   
+            content.innerHTML = '<a href="./travel_deals.html#siwa_info">Siwa Reef</a>';   
             overlay.setPosition(coordinate);
          
          } else if (coordinate[1].toPrecision(1) == -2000000) {
-            content.innerHTML = '<a href="https://www.google.com.my/maps">Great Barrier Reef</a>' + coordinate;   
+            content.innerHTML = '<a href="./travel_deals.html#great_info">Great Barrier Reef</a>';   
             overlay.setPosition(coordinate);
          
          } else if (coordinate[1].toPrecision(1) == 3000000) {
-            content.innerHTML = '<a href="https://www.google.com.my/maps">Okinawa</a>' + coordinate;   
+            content.innerHTML = '<a href="./travel_deals.html#okinawa_info">Okinawa</a>';   
             overlay.setPosition(coordinate);
          
          } else {
-            content.innerHTML = '<a href="https://www.google.com.my/maps">Shireteko</a>' + coordinate;   
+            content.innerHTML = '<a href="./travel_deals.html#shireteko_info">Shireteko</a>';   //+ coordinate
             overlay.setPosition(coordinate);
 
          } 
