@@ -1,30 +1,14 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/farahroslend/scubasia)
 
 # SCUBAsia - Interactive Frontend Development Milestone Project
-Website for exploring scuba diving sites in Asia
+Website for exploring scuba diving sites in Asia. 
+Also hosts descriptions on what are the highlights in the diving area such as the flora and fauna that's endemic to that region, local attractions like restaurants to try out and diving packages that can inspire the holiday maker to plan for a visit.
+<https://farahroslend.github.io/scubasia/SCUBAsia/index.html>
 
-<https://farahroslend.github.io/scubasia/SCUBAsia/>
-
-## Overview
-For the second project of my Code Institute Full Stack Web Developer course, I was tasked with building an interactive front-end site.
-It builds on the first project's emphasis on HTML and CSS by introducing JavaScript, to create a dynamic and interactive site that responds to user input, and 
-allows the user to manipulate data to alter what is presented to them on-screen.
-I decided to create a "personality quiz"-style assessment, with the aim of working out which central Bristol venues (i.e. pubs and bars) meet the user's needs/preferences.
-It asks the user a series of 12 questions, then suggests three Bristol pubs or bars that match their answers. In addition, the site uses the Google Maps and Google Places APIs
-to retrieve data about the three suggested venues and presents that data on the results screen. This includes a Google Map, a Google photo, and place details such as the website URL
-and Google reviews star rating.
-
-The project uses JavaScript to achieve three aims: DOM manipulation to change the structure and styling of the page, creating the logic of the quiz to work out the three suggested
-venues based on the user's answers, and access to the Google APIs to get and present data. There are two JavaScript files in the project: "scripts.js" for the varibles and functions,
-and "venues.js" for the venue objects representing the venues the user can be suggested.
-
-The site is split into three main views: the start page, the question slides, and the results page. Only one question is presented at a time, and the site uses buttons to start the
-quiz, navigate through the questions, submit the user's answers, and return to the start. The site is responsive across different devices without any loss of core functionality.
 
 
 ## UX
-My full UX documentation can be found in the ux-design folder, which can be found [here](ux-design).
-This includes documents detailing my thoughts on the strategy and scope planes of this project, plus the basic structure and my skeleton wireframes.
+The theme for the project is minimalism (straight-to-the-point), with an oceanic colour code.
 
 ### User Stories
 
@@ -63,15 +47,15 @@ This includes documents detailing my thoughts on the strategy and scope planes o
 
 * [CSS3](https://www.w3.org/Style/CSS/)
 
-* [Bootstrap Bare Template](https://www.w3.org/Style/CSS/)
+* [Bootstrap Bare Template](https://startbootstrap.com/templates/bare/)
 
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
   * To cutomise the markers on the map, link the markers to the appropriate name of the location and to the portion of webpage with the diving spot's descriptions.
 
-* [OpenStreetMaps API](https://cloud.google.com/maps-platform/maps)/[Google Places API](https://cloud.google.com/maps-platform/places)
+* [OpenStreetMaps API](https://www.openstreetmap.org/#map=6/4.116/109.455)
 
-  * By connecting to Google APIs, my website can retrieve data to display to the user. Specifically, a Google Map and place details of each of the user's top three venues, which are decided based on the answers they selected for the quiz questions.
+  * Free no-register, no need for credit card details to access API key for the map  
 
 * [Git](https://git-scm.com/)
 
@@ -90,36 +74,57 @@ This includes documents detailing my thoughts on the strategy and scope planes o
   
   * Used to provide the Permanent Marker font.
 
+## Version Control
+* Development of the website using the Gitpod IDE, launched by including `gitpod.io/#` at the beginning of the SCUBAsia Github repository, as prescribed by Github [here] (https://www.gitpod.io/docs/getting-started/)
+* Accidentally installed a branched version of the repository in Gitpod farahroslend/gitpod-setup, thereby needing pull requests to merge the new versions of the codes with the master branch
+* Used the following commands in the CLI in Gitpod to for version control:
+    * `git add .`
+    * `git commit -m "...insert comment here..."`
+    * `git push`
+
 ## Testing 
+
+### Tools
+* W3C CSS Validation Service (https://jigsaw.w3.org/css-validator/).
+* W3C Markup Validation Service (https://validator.w3.org/).
+* JavaScript codes (https://jshint.com/)
 * run `$ python3 -m http.server 8080` on Gitpod's CLI to preview website
 * Used Google Chrome's Inspect Feature to improve layout design and troubleshoot bugs 
 
-## Deployment
-The project was coded in the GitPod IDE. I had previously installed the GitPod browser extension, which allows you to create a GitPod workspace with the click of a button in GitHub.
-I first created a new repository in GitHub and then created the GitPod workspace, where I coded the project. 
-I used Git within GitPod for version control, with all commits being pushed to the linked GitHub repository. As I was not working on a live website and I was the sole developer, I used only the master branch.
+### Debugging
+* Map loads perfectly on the landing page, panning into the Asia region with functional zoom in and out buttons
+* Map displays all the markers for the diving spots, when webpage is loaded in all 3 viewing port sizes (large, medium, small), and the name of the location pops up when clicked 
+* Marker pops up the names of the diving location with the link to a page with more details on the area, when clicked. Need to use `coordinate` in the javascript codes to view the OpenStreetMap coordinates to pin the location name pop up close to where the marker is. This code is removed after deployment.
+* Links at the markers ushers user to the right section of the travel deals page 
+* Links to external travel vendors works well
+* Pop up closes when other markers or anywhere else are clicked 
+* Navigation bar contents links to the right pages when clicked
 
-To publish my website in GitHub, I used GitHub Pages from the settings of my repository. After selecting the master branch as the source, my website project can be found here: <https://harclemadscam.github.io/second-milestone-project/>
+
+### Media Responsiveness
+* On large screens, nav bar displays all the contents it hosts in its div
+* On small screens, the nav bar condenses the right half of the contents of its div (home, travel deals, contact us) into a collapsible button
+* Since the design of the website is minimalistic, there is not much need to significantly change the layout of the other divs, and so the divs would re-scale relative to the size of the viewing port using css elements `height: 50vh` and `width: 50vw` to keep the scale of the map, images appropriate.
+
+
+## Deployment
+For publish my website in Github pages, I've followed the following steps as recommended by GitHub [here](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site):
+* On GitHub, navigate to my site's [repository](https://github.com/farahroslend/scubasia) 
+* Go to Settings > Options > GitHub Pages
+* Master branch, /root selected as publishing source
+* Saved
+
+The deployed website is live [here](https://farahroslend.github.io/scubasia/SCUBAsia/index.html). 
+`/SCUBAasia/index.html` added at the end of the deployed link, since the master branch has multiple folders to also host the Bootstrap Bare Template, and its dependencies.
+
 
 ## Credits
 ### Content
-All text content was created by myself.
+From [WikiTravels](https://wikitravel.org/en/Main_Page)
+
 ### Media
-Images were sourced from: 
-
-<https://www.pexels.com/>
-
-<https://unsplash.com/>
-
-<https://www.piqsels.com/>
-
-The results page images are taken from the Google Places API, and are subject to change. An image credit is presented underneath the image that will update dynamically, in line with
-Google's attribution policy.
+Images were sourced from: [Google Images](https://www.google.com/imghp?hl=EN), [Pintrest](https://www.pinterest.com/)
 
 ### Acknowledgements
-My design was partly inspired by this [guide](https://www.sitepoint.com/simple-javascript-quiz/), mostly for its use of slides to display the questions.
-
-I made frequent use of [Stack Overflow](https://stackoverflow.com/) and the Google Maps API [documentation](https://developers.google.com/maps/documentation) for help and advice. 
-The code used to access the Google APIs is based on the advice of their documentation, with some changes made to suit my goals.
-
-To create the background gradient, text shadow, and box shadow effects, I used the following online tools: [Here](https://cssgradient.io/), [Here](https://html-css-js.com/css/generator/text-shadow/) and [Here](https://www.cssmatic.com/box-shadow).
+* Used Bootstrap Bare Templates to set up the navigation bar and landing page, with some customisation to fit the theme of this project.
+* Significantly modified some javascript codes from [here](https://openstreetmap.be/en/projects/howto/openlayers.html) to create more markers, add description at the relevant markers when clicked with link to the diving spot's decriptions and travel deals.
